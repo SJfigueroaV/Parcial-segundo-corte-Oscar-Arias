@@ -1,0 +1,31 @@
+PREGUNTAS DE DEFENSA TECNICA
+Integrantes: Sarai Mejia, Juan Betancourt, Santiago Figueroa
+
+
+1. ¿Por qué es un error crítico de arquitectura si la clase InventarioModel ejecuta
+directamente modeloTabla.addRow(...) para actualizar la pantalla?
+
+Porque el modelo no deberia saber nada de la pantalla. Si hace addRow queda
+amarrado a Swing y ya se rompe el MVC. Si mañana cambian la tabla o la interfaz
+toca meterle mano al modelo tambien, y la idea es que el modelo solo maneje los
+datos y el controlador sea el que actualiza la vista.
+
+
+2. Si un usuario ingresa la palabra "Gratis" en la caja de texto del Precio, el
+programa colapsará con NumberFormatException. ¿En qué clase (Modelo, Vista o
+Controlador) debería programarse el bloque try-catch para mostrar un mensaje de
+error sin que se cierre la aplicación y por qué?
+
+En el Controlador. Ahi es donde se hace el Double.parseDouble, o sea donde se
+convierte lo que escribio el usuario, entonces ahi mismo se atrapa el error y
+se le muestra el mensaje. La vista solo muestra cosas y al modelo deberia llegar
+el dato ya bien.
+
+
+3. En su código, utilizaron un ArrayList<Dispositivo> en lugar de un arreglo
+clásico Dispositivo[]. ¿Qué ventaja operativa le brinda esta decisión a
+"TechStore" en días de alta afluencia de inventario?
+
+Que el ArrayList crece solo. Con el arreglo normal toca decir el tamaño desde
+el principio y si se llena (como lo de los 50 productos) se revienta. Con el
+ArrayList pueden entrar los productos que sea y no pasa nada.
